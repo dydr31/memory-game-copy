@@ -1,0 +1,9 @@
+.game-card img{
+    width: 100%;
+    border: 2px solid black;
+    
+}
+
+.game-card img:hover{
+    border: 2px solid red
+}

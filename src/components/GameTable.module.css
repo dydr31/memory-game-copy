@@ -1,0 +1,29 @@
+.game-table{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+    padding: 2.5em;
+    background-color: fade(black, 60%);
+    
+}
+
+h2{
+    margin-left: 3%;
+}
+
+@media (max-width: 1250px) {
+    .game-table{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: .8em;
+        row-gap: .4em;
+    }
+    h2{
+        
+        /* align-items: center;
+        align-self: center;
+        align-content: center; */
+        text-align: center;
+
+    }
+}
