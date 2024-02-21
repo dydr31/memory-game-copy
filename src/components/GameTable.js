@@ -4,10 +4,9 @@ import cube from "../assets/cube.png";
 import diamond from "../assets/diamond.png";
 import pyramid from "../assets/pyramid.png";
 
-import { useState, useLayoutEffect, useRef, useEffect } from "react";
+import { useState, useLayoutEffect, useRef, useEffect} from "react";
 import GameCard from "./GameCard";
 import classes from "./GameTable.module.css";
-import { fireEvent } from "@testing-library/react";
 
 let cardData = [
   { img: ball, id: 1 },
@@ -29,20 +28,23 @@ const GameTable = (props) => {
   //return shaffled cardData
   shuffleArray(cardData);
 
-  const [someData, setSomeData] = useState(1);
   const [n, setN] = useState(-1);
   // let n = useRef(-1)
   const [isGameOver, setIsGameOver] = useState(false);
 
+  const [score, setScore] = useState(0);
+
   const firstRendering = useRef(true);
+
+  const [counter, setCounter] = useState(0)
+  
+  let final = false
   
 
   const onClickIdHandle = (id) => {
-    //this reloads our cards
-    //setSomeData(Math.random());
-
+    setCounter(number => number + 1);
+    //if out n changes game stops
     setN(chosenCards.indexOf(id));
-    // n = chosenCards.indexOf(id)
     setScore((score) => score + 1);
 
     setChosenCards((chosenCards) => {
@@ -50,9 +52,11 @@ const GameTable = (props) => {
     });
   };
 
-  const [score, setScore] = useState(0);
+  if (score === 5){
+    final = true
+  }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (firstRendering.current === true) {
       firstRendering.current = false;
       return;
@@ -62,20 +66,16 @@ const GameTable = (props) => {
       setScore(0);
       firstRendering.current = true;
       setChosenCards([""]);
+      final = false
     } else{
       alert("game over!");
       setIsGameOver(true);
       setScore(0);
       firstRendering.current = true;
       setChosenCards([""]);
+      final = false
     }
-  }, [n]);
-
-  // useEffect(() => {
-  //   if (isGameOver === true) {
-  //     console.log("over");
-  //   }
-  // });
+  }, [n, final]);
 
   const [chosenCards, setChosenCards] = useState('');
 
@@ -85,11 +85,10 @@ const GameTable = (props) => {
 
   return (
     <div className={classes['main-content']}>
+      {console.log(final)}
       <h2>Score: {score}</h2>
       <div className={classes["game-table"]}>
         {cards}
-        {/* {console.log(chosenCards)}
-        {console.log(score)} */}
       </div>
     </div>
   );
