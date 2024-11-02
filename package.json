@@ -1,6 +1,6 @@
 {
   "homepage": "http://dydr31.github.io/memory-game-copy",
-  "name": "memoty-game",
+  "name": "memory-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
