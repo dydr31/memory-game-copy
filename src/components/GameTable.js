@@ -81,11 +81,12 @@ const GameTable = () => {
       id={x.id}
       onClickId={onClickIdHandle}
       alt={x.alt}
+      score={score}
     />
   ));
 
   return (
-    <>
+    <>{console.log(score)}
       <main className={classes["main-content"]}>
         <h2>Score: {score}</h2>
         <div className={classes["game-table"]}>{cards}</div>

@@ -5,12 +5,13 @@ const GameCard = (props) => {
     props.onClickId(event.target.id);
   };
 
-  return (
-    <div className={classes["game-card"]} onClick={gameCardClickHandle}>
+  return (<>
+    <div className={`${classes["game-card"]}`} onClick={gameCardClickHandle}>
       <div className={classes['image-container']}>
         <img src={props.img} id={props.id} alt={props.alt}/>{" "}
       </div>
     </div>
+    </>
   );
 };
 

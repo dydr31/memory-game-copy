@@ -3,7 +3,7 @@ import GameTable from "./components/GameTable";
 
 function App() {
   return (
-    <div className={classes.background}>
+    <div>
       <header>
         <h1>Memory Game</h1>
       </header>

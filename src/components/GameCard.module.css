@@ -3,6 +3,10 @@
     padding: .5rem;
 }
 
+.fade-in{
+    animation: fade-in 1s forwards;
+}
+
 
 .image-container img{
     width: 100%;
@@ -20,4 +24,13 @@
 
 .game-card:hover{
     border: 2px solid orangered;
+}
+
+@keyframes fade-in {
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
 }
