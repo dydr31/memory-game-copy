@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import classes from "./App.module.css";
 import GameTable from "./components/GameTable";
 
@@ -10,7 +9,8 @@ function App() {
       </header>
       <GameTable />
       <footer>
-        <p>by dydr31@gitgub.com</p>
+        <p><b>by <a href='https://github.com/dydr31'>dydr31@gitgub.com</a></b></p>
+        <p><a href="https://www.flaticon.com/free-stickers/animals" title="animals stickers">Animals stickers created by Stickers - Flaticon</a></p>
       </footer>
     </div>
   );

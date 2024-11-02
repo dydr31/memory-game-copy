@@ -1,19 +1,19 @@
-import ball from "../assets/ball.png";
-import cone from "../assets/cone.png";
-import cube from "../assets/cube.png";
-import diamond from "../assets/diamond.png";
-import pyramid from "../assets/pyramid.png";
+import cow from "../assets/cow.png";
+import crocodile from "../assets/crocodile.png";
+import flamingo from "../assets/flamingo.png";
+import sheep from "../assets/sheep.png";
+import zebra from "../assets/zebra.png";
 
-import { useState, useLayoutEffect, useRef, useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 import GameCard from "./GameCard";
 import classes from "./GameTable.module.css";
 
 let cardData = [
-  { img: ball, id: 1 },
-  { img: cone, id: 2 },
-  { img: cube, id: 3 },
-  { img: diamond, id: 4 },
-  { img: pyramid, id: 5 },
+  { img: cow, id: 1, alt: "Cow" },
+  { img: crocodile, id: 2, alt: "Crocodile" },
+  { img: flamingo, id: 3, alt: "Flamingo" },
+  { img: sheep, id: 4, alt: "Sheep" },
+  { img: zebra, id: 5, alt: "Zebra" },
 ];
 
 function shuffleArray(array) {
@@ -24,25 +24,20 @@ function shuffleArray(array) {
   return array;
 }
 
-const GameTable = (props) => {
+const GameTable = () => {
   //return shaffled cardData
   shuffleArray(cardData);
 
   const [n, setN] = useState(-1);
   // let n = useRef(-1)
-  const [isGameOver, setIsGameOver] = useState(false);
 
   const [score, setScore] = useState(0);
 
   const firstRendering = useRef(true);
 
-  const [counter, setCounter] = useState(0)
-  
-  let final = false
-  
+  const [final, setFinal] = useState(false);
 
   const onClickIdHandle = (id) => {
-    setCounter(number => number + 1);
     //if out n changes game stops
     setN(chosenCards.indexOf(id));
     setScore((score) => score + 1);
@@ -52,9 +47,11 @@ const GameTable = (props) => {
     });
   };
 
-  if (score === 5){
-    final = true
-  }
+  useEffect(() => {
+    if (score === 5) {
+      setFinal(true);
+    }
+  }, [score]);
 
   useEffect(() => {
     if (firstRendering.current === true) {
@@ -62,35 +59,38 @@ const GameTable = (props) => {
       return;
     } else if (score === 5) {
       alert("game win");
-      setIsGameOver(true);
       setScore(0);
       firstRendering.current = true;
       setChosenCards([""]);
-      final = false
-    } else{
+      setFinal(false);
+    } else {
       alert("game over!");
-      setIsGameOver(true);
       setScore(0);
       firstRendering.current = true;
       setChosenCards([""]);
-      final = false
+      setFinal(false);
     }
   }, [n, final]);
 
-  const [chosenCards, setChosenCards] = useState('');
+  const [chosenCards, setChosenCards] = useState("");
 
   let cards = cardData.map((x) => (
-    <GameCard key={x.id} img={x.img} id={x.id} onClickId={onClickIdHandle} />
+    <GameCard
+      key={x.id}
+      img={x.img}
+      id={x.id}
+      onClickId={onClickIdHandle}
+      alt={x.alt}
+    />
   ));
 
   return (
-    <div className={classes['main-content']}>
-      {console.log(final)}
-      <h2>Score: {score}</h2>
-      <div className={classes["game-table"]}>
-        {cards}
-      </div>
-    </div>
+    <>
+      <main className={classes["main-content"]}>
+        <h2>Score: {score}</h2>
+        <div className={classes["game-table"]}>{cards}</div>
+      </main>
+    </>
   );
 };
 

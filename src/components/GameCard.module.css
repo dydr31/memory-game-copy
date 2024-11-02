@@ -1,9 +1,23 @@
-.game-card img{
-    width: 100%;
-    border: 2px solid black;
-    
+
+.image-container{
+    padding: .5rem;
 }
 
-.game-card img:hover{
-    border: 2px solid red
+
+.image-container img{
+    width: 100%;
+}
+.game-card{
+    border: 2px solid rgb(172, 172, 172);
+    border-radius: .5rem;
+
+}
+
+.game-card:hover{
+    cursor: pointer;
+}
+
+
+.game-card:hover{
+    border: 2px solid orangered;
 }
